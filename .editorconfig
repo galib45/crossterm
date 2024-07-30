@@ -1,0 +1,38 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# Top-most EditorConfig file
+root = true
+
+# Default settings for all files
+[*]
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Settings for C files
+[*.c]
+indent_style = space
+indent_size = 4
+tab_width = 4
+
+# Settings for header files
+[*.h]
+indent_style = space
+indent_size = 4
+tab_width = 4
+
+# Settings for makefiles, if needed
+[Makefile]
+indent_style = tab
+
+# Settings for other file types if necessary
+[*.cpp]
+indent_style = space
+indent_size = 4
+tab_width = 4
+
+[*.md]
+indent_style = space
+indent_size = 2
+tab_width = 2
