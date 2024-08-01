@@ -20,27 +20,28 @@ void errmsg(const char *format, ...) {
     pl_exit(EXIT_FAILURE);
 }
 
-void poll_events(DWORD timeout) {
+INPUT_RECORD poll_event(DWORD timeout) {
     DWORD result, cNumRead;
-    INPUT_RECORD irInBuf[128];
+    INPUT_RECORD irInBuf[1];
     while (true) {
         result = WaitForSingleObject(hIn, timeout);
         if (result == WAIT_TIMEOUT) continue;
-        else if (result == WAIT_FAILED) errmsg("Failed to wait for event.");
+        else if (result == WAIT_FAILED) errmsg("Failed to wait for event. %d", GetLastError());
         else break;
     }
-    if (!ReadConsoleInput(hIn, irInBuf, 128, &cNumRead)) errmsg("Failed to read console input.");
+    if (!ReadConsoleInput(hIn, irInBuf, 1, &cNumRead)) errmsg("Failed to read console input.");
+    return irInBuf[0];
 }
 
 void setup() {
     // Set output mode to handle virtual terminal sequences
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     if (hOut == INVALID_HANDLE_VALUE) errmsg("Couldn't get standard output handle");
-    HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE);
+    hIn = GetStdHandle(STD_INPUT_HANDLE);
     if (hIn == INVALID_HANDLE_VALUE) errmsg("Couldn't get standard input handle");
 
-    DWORD dwOriginalOutMode = 0;
-    DWORD dwOriginalInMode = 0;
+    dwOriginalOutMode = 0;
+    dwOriginalInMode = 0;
     if (!GetConsoleMode(hOut, &dwOriginalOutMode)) errmsg("Couldn't get output mode");
     if (!GetConsoleMode(hIn, &dwOriginalInMode)) errmsg("Couldn't get output mode");
 
