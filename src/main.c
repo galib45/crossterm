@@ -13,9 +13,9 @@ int main() {
         if (ir.EventType == KEY_EVENT) {
             ker = ir.Event.KeyEvent;
             if (ker.bKeyDown) {
-                switch (ker.uChar.AsciiChar) {
+                switch (ker.uChar.UnicodeChar) {
                     case 'q': should_run = false; break;
-                    default: printf("%c", ker.uChar.AsciiChar); break;
+                    default: printf("%d\n", ker.uChar.UnicodeChar); break;
                 }
             }
         }
