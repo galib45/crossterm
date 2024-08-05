@@ -35,9 +35,9 @@ void errmsg(const char *format, ...) {
     pl_exit(EXIT_FAILURE);
 }
 
-poll_event(int timeout) {
-
-}
+// poll_event(int timeout) {
+//
+// }
 
 void setup() {
     tcgetattr(STDIN_FILENO, &orig_termios);

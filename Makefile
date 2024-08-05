@@ -1,5 +1,5 @@
 # Compiler and Flags
-CC = gcc
+CC = clang
 CFLAGS = -Wall -Wextra
 
 # Directories
