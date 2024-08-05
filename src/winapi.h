@@ -4,9 +4,14 @@
 HANDLE hIn, hOut;
 DWORD dwOriginalOutMode = 0, dwOriginalInMode = 0;
 
-void pl_exit(int exit_code) {
+void cleanup() {
+    cr_free();
     SetConsoleMode(hIn, dwOriginalInMode);
     SetConsoleMode(hOut, dwOriginalOutMode);
+}
+
+void pl_exit(int exit_code) {
+    cleanup();
     ExitProcess(exit_code);
 }
 
