@@ -1,11 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <string.h>
-#include <stdint.h>
-
-#define ARENA_IMPLEMENTATION
-#include "arena.h"
+#include "crossterm.h"
 
 static Arena arena = {0};
 void* cr_alloc(size_t size) { return arena_alloc(&arena, size); }

@@ -1,42 +1,4 @@
-// Define the enum for color types
-typedef enum {
-    COLOR_RESET,
-    COLOR_BLACK, COLOR_DARK_GREY,
-    COLOR_RED, COLOR_DARK_RED,
-    COLOR_GREEN, COLOR_DARK_GREEN,
-    COLOR_YELLOW, COLOR_DARK_YELLOW,
-    COLOR_BLUE, COLOR_DARK_BLUE,
-    COLOR_MAGENTA, COLOR_DARK_MAGENTA,
-    COLOR_CYAN, COLOR_DARK_CYAN,
-    COLOR_WHITE, COLOR_GREY,
-    COLOR_RGB,
-    COLOR_ANSI_VALUE
-} ColorType;
-
-// Define a struct to hold RGB values
-typedef struct {
-    uint8_t r;
-    uint8_t g;
-    uint8_t b;
-} RGB;
-
-// Define a union to hold either RGB values or ANSI value
-typedef union {
-    RGB rgb;
-    uint8_t ansi_value;
-} ColorData;
-
-// Define a struct to represent the Color with its type and data
-typedef struct {
-    ColorType type;
-    ColorData data;
-} Color;
-
-typedef struct {
-    Color foreground;
-    Color background;
-    char *text;
-} StyledContent;
+#include "crossterm.h"
 
 void set_foreground_color(Color color) {
     char *code = cr_alloc(10); RGB rgb;

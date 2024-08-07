@@ -1,5 +1,5 @@
-#include <stdbool.h>
 #include <windows.h>
+#include "crossterm.h"
 
 HANDLE hIn, hOut;
 DWORD dwOriginalOutMode = 0, dwOriginalInMode = 0;
